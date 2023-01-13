@@ -1,0 +1,63 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>출력결과</title>
+</head>
+
+<body>
+    <script>
+        function solution(n, arr) {
+            let answer = "";
+            let max = Number.MIN_SAFE_INTEGER;
+            for (let x of arr) {
+                // let sum = x.toString().split('').reduce((a,b)=> a+Number(b), 0);
+                // 위처럼 한다면 16~22번째 줄은 사용하지 않아도 됨
+                let sum = 0;
+                let tmp = x;
+                while (tmp) {
+                    sum += (tmp % 10);
+                    tmp = Math.floor(tmp / 10);
+                    // tmp가 0이 될 때까지 while문을 돌림
+                    // tmp를 10으로 나눠 나온 나머지 값을 sum으로 계속 더해줌 (한자릿수씩 빼서 더함)
+                    // tmp는 10으로 나눠 끝자리 수를 계속해서 빼주는 동시에 while문을 종료시키는 역할을 함
+                    // tmp가 0이 되면(=거짓이 되면) while문을 종료하고 더해진 숫자는 sum에 담김
+                }
+                if (sum > max) {
+                    max = sum;
+                    // sum이 max보다 크면 max의 값을 변경
+                    answer = x;
+                    // answer의 값을 x로 바꿈
+                    // 만약 sum이 max보다 크지 않다면 넘어감
+                } else if (sum === max) {
+                    // 만약 계속 검사하다가 answer의 값이 x보다 크다면 그 값으로 answer의 값을 변경함
+                    if (x > answer) {
+                        answer = x
+                    }
+                }
+            }
+            return answer;
+        }
+
+        let arr = [128, 460, 603, 40, 521, 137, 123];
+        console.log(solution(7, arr));
+    </script>
+</body>
+
+</html>
+
+<!-- 
+
+N개의 자연수가 입력되면 각 자연수의 자릿수의 합을 구하고,
+그 합이 최대인 자연수를 출력 하는 프로그램을 작성하세요.
+자릿수의 합이 같은 경우 원래 숫자가 큰 숫자를 답으로 합니다.
+만약 235 와 1234가 동시에 답이 될 수 있다면 1234를 답으로 출력해야 합니다.
+
+▣ 입력설명
+첫 줄에 자연수의 개수 N(3<=N<=100)이 주어지고, 그 다음 줄에 N개의 자연수가 주어진다. 각 자연수의 크기는 10,000,000를 넘지 않는다.
+▣ 출력설명
+자릿수의 합이 최대인 자연수를 출력한다.
+▣ 입력예제 1
+7
+128 460 603 40 521 137 123
+▣ 출력예제 1 137 -->
